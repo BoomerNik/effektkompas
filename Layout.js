@@ -6,17 +6,17 @@ let saveSvgButton;
 let saveImageButton;
 
 let zoomSlider;
-let sizeSlider;
 let offsetSlider;
 let modeRadio;
 
+let guideButton;
+
 function setupLayout(){	
-	svg = createElement("SVG", "");
-	svg.attribute("id", "svg");
+	svg = createElement("div", "");
 	
 	textArea = createElement("textarea", "");
 	textArea.attribute("rows", "30");
-	textArea.attribute("cols", "40");
+	textArea.attribute("cols", "60");
 	textArea.attribute("onkeydown", "textAreaKeyDown(this,event);")
 	textArea.attribute("onkeyup", "textAreaKeyUp(this,event);")
 	textArea.attribute("wrap", "soft");
@@ -39,14 +39,6 @@ function setupLayout(){
 	
 	createElement("br");
 	
-	createElement("Label","Tekst Størrelse:");
-	sizeSlider = createSlider(0.1, 5, textSize, 0.05);
-	sizeSlider.size(300);
-	sizeSlider.attribute("oninput", "sizeSliderMoved()")
-	sizeSlider.attribute("class", "slider");
-	
-	createElement("br");
-	
 	createElement("Label","Offset Størrelse:");
 	offsetSlider = createSlider(0, 2, offset, 0.05);
 	offsetSlider.size(300);
@@ -60,19 +52,31 @@ function setupLayout(){
 	modeRadio.option(1,'Design Mode');
 	modeRadio.selected('0');
 	modeRadio.attribute("oninput", "updateSVG()");
+	
+	createElement("br");
+	
+	guideButton = createButton("Guide");
+	guideButton.mousePressed(guideButtonPressed);
 }
 
 function windowResized(){
 	const sizeF = 0.8;
 	
-	resizeCanvas(windowHeight * sizeF, windowHeight * sizeF);
+	//resizeCanvas(windowHeight * sizeF, windowHeight * sizeF);
 	
-	svg.position(0,0);
+	width = windowHeight * sizeF;
+	height = windowHeight * sizeF;
+	
+	//svg.position(0,0);
 	
 	textArea.position(width+5,0);
+	
 	updateButton.position(width+5, 520);
-	saveSvgButton.position(width+70, 520);
-	saveImageButton.position(width+147, 520);
+	
+	saveSvgButton.position(width+5, 550);
+	saveImageButton.position(width+85, 550);
+	
+	guideButton.position(width+5, 580);
 	
 	updateSVG();
 }
@@ -107,11 +111,6 @@ function saveImageButtonPressed(){
 	img.src = "data:image/svg+xml;base64,"+
 		btoa(encodeURIComponent(svg.html())
 		.replace(/%([0-9A-F]{2})/g, function(match, p1) {return String.fromCharCode('0x' + p1);}));;
-}
-
-function sizeSliderMoved(){
-	textSize = sizeSlider.value();
-	updateSVG();
 }
 
 function zoomSliderMoved(){
@@ -160,4 +159,13 @@ function textAreaKeyDown(textArea, e){
 
 function textAreaKeyUp(o, e){
 	updateSVG();
+}
+
+function guideButtonPressed(){
+	let link = document.createElement('a');
+	link.download = "Guide.txt";
+	link.href = "Guide.txt";
+	link.target = "_blank";
+	link.rel = "noopener noreferrer";
+	link.click();
 }

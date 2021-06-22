@@ -3,13 +3,11 @@ html, body {
   padding: 0;
 }
 
-canvas {
-  border: solid;
-  border-width: 1px
-}
+
 
 svg {
-	z-index: -1;
+	border: solid;
+	border-width: 1px
 }
 
 textarea {

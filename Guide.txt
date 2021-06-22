@@ -1,0 +1,69 @@
+----------------------------------
+|            Genveje             |
+----------------------------------
+
+Enter: Skifter linje og indsætter automatisk en 'tab'. (Jeg blev træt af at trykke tab...)
+	
+Ctrl + Enter: Indsætter "\\".
+
+Musehjul: Zoom ind/ud
+
+Shift + 3: # (Hashtag/Nummertegn)
+Shift + 4: ¤ (Valutategn/Mine)
+
+
+----------------------------------
+|       Syntax "Fast Mode"       |
+----------------------------------
+
+Center A #r 		<-- Starter nyt segment med rød farve (r/g/b)
+	A11				<-- Tilføjer tekst til 1. lag 
+	A12				<-- Tilføjer tekst til 2. lag
+	A13				
+	-				<-- Starter ny kolonne i nuveræende segment
+	A21
+	A22\\A22B		<-- Skriver tekst på 2 linier
+	A23
+					<-- Blanke linjer bliver ignoreret
+					
+Center B			<-- Starter nyt segment med default grå farve
+	B11
+	B12
+	B13\\Hej\\med\\dig		<--Skriver tekst på 4 linjer
+	B14
+	-
+	B21
+
+
+----------------------------------
+|     Syntax "Design Mode"       |
+----------------------------------
+
+¤L1 r15 t3			<-- Ændrer stilen på lag 1 til at have en bredde på 15 og tekststørrelse på 3 (Default r10 t2)
+¤L2 t5				<-- Ændrer stilen på lag 2 til at have en tekststørrelse på 5
+
+Center B #g			<-- Starter nyt segment med grøn farve (r/g/b)
+	B11				<-- Tilføjer tekst til 1. lag kolonne 1
+	B12				<-- Tilføjer tekst til 1. lag kolonne 2
+	B13
+	-				<-- Starter nyt lag	
+	B21
+	B22\\B22.2		<-- Skriver tekst på 2 linjer
+	B23
+	-
+	B31
+	B32
+	B33
+					<-- Blanke linjer bliver ignoreret
+
+Center C	 			<-- Starter nyt segment med default grå farve
+	C11 ¤2				<-- Laver et felt med relativ størrelse 2 (Valutategnet ¤ findes på shift+4)
+	C12 ¤(1/2+8)/14		<-- Laver et felt med relativ størrelse 0,6071...
+	-
+	C21
+	C22
+	C23
+	C24
+	-
+	C31 ¤2
+	C32

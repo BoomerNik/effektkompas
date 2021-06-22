@@ -5,7 +5,7 @@ let offset = 0.5;
 let strokeColor = 'black';
 let fillColor = 'None';
 
-let textColor = 'black';
+let textColor = 'white';
 
 function createSVGHeader(){
 let s = 
@@ -14,7 +14,7 @@ let s =
 	 
 	 <style type="text/css">
 		path {stroke-width: .2;}
-		text {font-family: Hill; font-weight: bold}
+		text {font-family: Gotham; font-weight: 325}
 	 </style>
 `;  
 	return s
@@ -83,13 +83,16 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 	
 		pathids.push("path"+(textPathCount++));
 		
-		s += `<path id="${pathids[i]}" d="M ${v1.x} ${v1.y} A ${r} ${r}, 0 0 1, ${v2.x} ${v2.y}" />\n`;
+		if(v1.x < v2.x)
+			s += `<path id="${pathids[i]}" d="M ${v1.x} ${v1.y} A ${r} ${r}, 0 0 1, ${v2.x} ${v2.y}" />\n`;
+		else
+			s += `<path id="${pathids[i]}" d="M ${v2.x} ${v2.y} A ${r} ${r}, 0 0 0, ${v1.x} ${v1.y}" />\n`;
 	}
 	
 	s += "</defs>\n<text>\n"
 	
 	for(let i = 0; i < t.length; i++){
-		s += `<textPath xlink:href="#${pathids[i]}" font-size="${textSize}" fill="${textColor}" text-anchor="middle" startOffset="50%">${t[i]}</textPath>\n`;
+		s += `<textPath xlink:href="#${pathids[i]}" font-size="${textSize}" fill="${textColor}" text-anchor="middle"; startOffset="50%" alignment-baseline=middle>${t[i]}</textPath>\n`;
 	}
 	
 	s += "</text>\n"

@@ -1,6 +1,11 @@
 let segments = [];
 
+
 function setup() {
+	checkVersion();
+	
+	noCanvas();
+	
 	setupLayout();
 	
 	windowResized();
@@ -8,20 +13,9 @@ function setup() {
 	updateButtonPressed();
 }
 
-let circles = [];
-function draw() {
-	//clear();
-	
-	//Cirkler
-	fill(150,50,50);
-	for(let c of circles){
-		circle(c.x, c.y, 50);
-	}	
-}
 
-function mouseClicked(){
-	if(keyIsDown(CONTROL))
-		circles.push(createVector(mouseX, mouseY));
+function draw() {
+	clear();
 }
 
 function mouseWheel(e){
@@ -37,14 +31,8 @@ function mouseWheel(e){
 	return true;
 }
 
-function keyPressed(){
-	if(keyCode == ESCAPE){
-		circles = [];
-	}
-}
-
 function createSVG(){
-	return createSVGHeader() + drawModel(10, 10, segments) +"</svg>";
+	return createSVGHeader() + drawModel(10, segments);
 }
 
 function updateSVG(){
@@ -59,16 +47,32 @@ function updateSVG(){
 function readTextToSVGDesignMode(){
 	segments = [];
 	
+	//Del linier og fjern blanke
 	let lines = textArea.value()
 		.split("\n")
 		.filter(l => l.trim() != "");
 	
-	for(let l of lines){		
-		if(!l.startsWith("\t")){
+	for(let l of lines){
+		if(l.startsWith("¤")){
+			l = l.replace("¤", "").split(" ");
+			
+			styling[l[0]] = {...styling.default};
+			
+			for(let i = 1; i < l.length; i++){
+				let s1 = l[i].substring(0,1);
+				let s2 = l[i].substring(1);
+				
+				if(s1 == "v")
+					styling[l[0]].v = true;
+				else
+					styling[l[0]][s1] = Number(s2);
+			}
+		}
+		else if(!l.startsWith("\t")){
 			segments.push(new Segment(l));
 			segments.last().addLayer();
 		}
-		else {		
+		else{		
 			let seg = segments[segments.length-1];
 			
 			l = l.trim()
@@ -89,9 +93,13 @@ function readTextToSVGDesignMode(){
 	saveCookie();
 }
 
-function readTextToSVGFastMode(){	
+function readTextToSVGFastMode(){
+	styling = {default: styling.default};
+	
 	//Del linier og fjern blanke
-	let lines = textArea.value().split("\n").filter(l => l.trim()!="");
+	let lines = textArea.value()
+		.split("\n")
+		.filter(l => l.trim()!="");
 	
 	//Prepocess
 	let record = 0;
@@ -177,6 +185,15 @@ function loadCookie(){
 		return decodeURIComponent(c);
 	
 	return "";
+}
+
+function checkVersion(){
+	let v = localStorage.getItem("EffektkompasVersion");
+	
+	if(v != version){
+		localStorage.setItem("EffektkompasVersion", version);
+		alert(newInVersion);
+	}
 }
 
 Array.prototype.last = function(item=null){
