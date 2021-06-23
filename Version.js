@@ -1,8 +1,17 @@
-let version = 10;
+let version = 11;
 
 let newInVersion =
 `
 Nyt i version ${version}:
+
+Fejl rettet:
+	Fejl i svg format rettet.
+	Export til svg og png skulle virke igen.
+
+Generelt:
+	Tekststørelse slider fjernet. Brug styling i design mode i stedet (Se guide).
+
+Nyt i version 10:
 
 Generelt:
 	Denne info-boks er ny!

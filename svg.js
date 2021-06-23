@@ -92,7 +92,7 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 	s += "</defs>\n<text>\n"
 	
 	for(let i = 0; i < t.length; i++){
-		s += `<textPath xlink:href="#${pathids[i]}" font-size="${textSize}" fill="${textColor}" text-anchor="middle"; startOffset="50%" alignment-baseline=middle>${t[i]}</textPath>\n`;
+		s += `<textPath xlink:href="#${pathids[i]}" font-size="${textSize}" fill="${textColor}" text-anchor="middle" startOffset="50%" alignment-baseline="middle">${t[i]}</textPath>\n`;
 	}
 	
 	s += "</text>\n"

@@ -32,7 +32,7 @@ function mouseWheel(e){
 }
 
 function createSVG(){
-	return createSVGHeader() + drawModel(10, segments);
+	return createSVGHeader() + drawModel(10, segments) + "</svg>";
 }
 
 function updateSVG(){
