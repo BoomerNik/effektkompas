@@ -16,7 +16,7 @@ Shift + 4: ¤ (Valutategn/Mine)
 |       Syntax "Fast Mode"       |
 ----------------------------------
 
-Center A #r 		<-- Starter nyt segment med rød farve (r/g/b)
+Center A #r 		<-- Starter nyt segment med rød farve (r/g/b/y)
 	A11				<-- Tilføjer tekst til 1. lag 
 	A12				<-- Tilføjer tekst til 2. lag
 	A13				
@@ -42,7 +42,7 @@ Center B			<-- Starter nyt segment med default grå farve
 ¤L1 r15 t3			<-- Ændrer stilen på lag 1 til at have en bredde på 15 og tekststørrelse på 3 (Default r10 t2)
 ¤L2 t5				<-- Ændrer stilen på lag 2 til at have en tekststørrelse på 5
 
-Center B #g			<-- Starter nyt segment med grøn farve (r/g/b)
+Center B #g			<-- Starter nyt segment med grøn farve (r/g/b/y)
 	B11				<-- Tilføjer tekst til 1. lag kolonne 1
 	B12				<-- Tilføjer tekst til 1. lag kolonne 2
 	B13

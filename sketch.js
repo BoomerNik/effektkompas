@@ -65,7 +65,7 @@ function readTextToSVGDesignMode(){
 				if(s1 == "v")
 					styling[l[0]].v = true;
 				else
-					styling[l[0]][s1] = Number(s2);
+					styling[l[0]][s1] = eval(s2.replace(',', '.'));
 			}
 		}
 		else if(!l.startsWith("\t")){
@@ -83,7 +83,7 @@ function readTextToSVGDesignMode(){
 			else{
 				let s = l.split("¤");
 				let t = s[0];
-				let size = s.length > 1 ? eval(s[1]) : 1;
+				let size = s.length > 1 ? eval(s[1].replace(',','.')) : 1;
 				
 				seg.layers[seg.layers.length-1].addItem(t, size);
 			}

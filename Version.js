@@ -1,8 +1,18 @@
-let version = 11;
+let version = 12;
 
 let newInVersion =
 `
 Nyt i version ${version}:
+
+Generelt:
+	Man kan nu bruge både punktum og komma i decimaltal.
+	Farver gjort mørkere iht. skabelon.
+	"Gul" farve tilføjet. Kode: #y
+	
+Fejl rettet:
+	Tekst nederst har linjerne i rigtig rækkefølge nu.
+
+Nyt i version 11
 
 Fejl rettet:
 	Fejl i svg format rettet.

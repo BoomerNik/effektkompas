@@ -73,13 +73,20 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 	let s = "<defs>\n";
 	
 	for(let i = 0; i < t.length; i++){
-		let r = r2 - ((r2-r1)/(t.length+1)) * (i+1);
-	
-		let v1 = createVector(r, 0);
+		let v1 = createVector(1, 0);
 		v1.setHeading(a1);
 	
-		let v2 = createVector(r, 0);
+		let v2 = createVector(1, 0);
 		v2.setHeading(a2);
+		
+		let r;
+		if(v1.x < v2.x)
+			r = r2 - ((r2-r1)/(t.length+1)) * (i+1);
+		else
+			r = r1 + ((r2-r1)/(t.length+1)) * (i+1);
+
+		v1.mult(r);
+		v2.mult(r);
 	
 		pathids.push("path"+(textPathCount++));
 		
