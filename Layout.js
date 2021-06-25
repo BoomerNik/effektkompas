@@ -9,6 +9,8 @@ let zoomSlider;
 let offsetSlider;
 let modeRadio;
 
+let iconRadio;
+
 let guideButton;
 
 function setupLayout(){	
@@ -31,6 +33,9 @@ function setupLayout(){
 	saveImageButton = createButton("Gem PNG");
 	saveImageButton.mousePressed(saveImageButtonPressed);
 	
+	guideButton = createButton("Guide");
+	guideButton.mousePressed(guideButtonPressed);
+	
 	createElement("Label", "Zoom:");
 	zoomSlider = createSlider(10,500, zoom);
 	zoomSlider.size(300);
@@ -47,16 +52,18 @@ function setupLayout(){
 	
 	createElement("br");
 	
-	modeRadio = createRadio();
+	modeRadio = createRadio("Mode");
 	modeRadio.option(0,'Fast Mode');
 	modeRadio.option(1,'Design Mode');
 	modeRadio.selected('0');
 	modeRadio.attribute("oninput", "updateSVG()");
 	
-	createElement("br");
-	
-	guideButton = createButton("Guide");
-	guideButton.mousePressed(guideButtonPressed);
+	iconRadio = createRadio("Icon");
+	iconRadio.option('Lille');
+	iconRadio.option('Stor');
+	iconRadio.option('Urban');
+	iconRadio.selected('Urban');
+	iconRadio.attribute("oninput", "updateSVG()");
 }
 
 function windowResized(){

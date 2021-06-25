@@ -1,8 +1,14 @@
-let version = 12;
+let version = 13;
 
 let newInVersion =
 `
 Nyt i version ${version}:
+
+Generelt:
+	Ikoner tilføjet. Vælg imellem Lille, Stor og Urban.
+	
+
+Nyt i version 12
 
 Generelt:
 	Man kan nu bruge både punktum og komma i decimaltal.

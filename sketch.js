@@ -21,7 +21,7 @@ function draw() {
 function mouseWheel(e){
 	if(mouseX < width && mouseY < height){
 		zoom += event.delta/10;
-		zoom = constrain(zoom, 10, 500);
+		zoom = constrain(zoom, 10, 1000);
 		
 		zoomSlider.value(zoom);
 		
@@ -32,7 +32,9 @@ function mouseWheel(e){
 }
 
 function createSVG(){
-	return createSVGHeader() + drawModel(10, segments) + "</svg>";
+	const ikon = ikoner[iconRadio.value()];
+	
+	return createSVGHeader() + drawModel(15, segments) + ikon + "</svg>";
 }
 
 function updateSVG(){
@@ -65,7 +67,7 @@ function readTextToSVGDesignMode(){
 				if(s1 == "v")
 					styling[l[0]].v = true;
 				else
-					styling[l[0]][s1] = eval(s2.replace(',', '.'));
+					styling[l[0]][s1] = eval2(s2);
 			}
 		}
 		else if(!l.startsWith("\t")){
@@ -83,7 +85,7 @@ function readTextToSVGDesignMode(){
 			else{
 				let s = l.split("¤");
 				let t = s[0];
-				let size = s.length > 1 ? eval(s[1].replace(',','.')) : 1;
+				let size = s.length > 1 ? eval2(s[1]) : 1;
 				
 				seg.layers[seg.layers.length-1].addItem(t, size);
 			}
@@ -201,4 +203,21 @@ Array.prototype.last = function(item=null){
 		this[this.length-1] = item;
 	else 
 		return this[this.length-1];
+}
+
+function eval2(S){
+	try{
+		return eval(S.replace(',','.'));
+	}
+	catch(err){
+		try{
+			return eval(S.replace(',','.')+'1');
+		}
+		catch(err2){
+			let a = 'Teksten: "'+S+'" kunne ikke oversættes til et tal';
+			console.error(a);
+		}
+	}
+	
+	return 1;
 }
