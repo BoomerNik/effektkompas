@@ -62,6 +62,7 @@ function setupLayout(){
 	iconRadio.option('Lille');
 	iconRadio.option('Stor');
 	iconRadio.option('Urban');
+	iconRadio.option('Intet');
 	iconRadio.selected('Urban');
 	iconRadio.attribute("oninput", "updateSVG()");
 }

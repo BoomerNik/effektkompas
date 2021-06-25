@@ -52,3 +52,5 @@ ikoner.Urban =
 	<line class="st0" x1="102.27" y1="482.11" x2="493.06" y2="482.11"/>
 </g>
 `;
+
+ikoner.Intet = "";
