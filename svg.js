@@ -1,6 +1,7 @@
 let textSize = 2;
 let zoom = 125;
 let offset = 0.5;
+let verticalText = false;
 
 let strokeColor = 'black';
 let fillColor = 'None';
@@ -66,34 +67,54 @@ function createArcSegment(r1, r2, a1, a2){
 
 let textPathCount = 0;
 function drawTextInArcSegment(t, r1, r2, a1, a2){
-	t = t.split("\\\\");
+	t = t.split(`\\`);
 	
 	let pathids = [];
 	
 	let s = "<defs>\n";
 	
-	for(let i = 0; i < t.length; i++){
-		let v1 = createVector(1, 0);
-		v1.setHeading(a1);
-	
-		let v2 = createVector(1, 0);
-		v2.setHeading(a2);
+	if(verticalText){
+		for(let i = 0; i < t.length; i++){
+			let a = a1+(a2-a1)/(t.length+1) * (i+1);
+			
+			let v1 = createVector(r1,0);
+			v1.setHeading(a);
+			
+			let v2 = createVector(r2,0);
+			v2.setHeading(a);
+			
+			pathids.push("path"+(textPathCount++));
+			
+			if(v1.x > v2.x)
+					[v1,v2] = [v2,v1];
+			
+			s += `<path id="${pathids[i]}" d="M ${v1.x} ${v1.y} L ${v2.x} ${v2.y}" />\n`;
+		}
+	}
+	else{
+		for(let i = 0; i < t.length; i++){
+			let v1 = createVector(1, 0);
+			v1.setHeading(a1);
 		
-		let r;
-		if(v1.x < v2.x)
-			r = r2 - ((r2-r1)/(t.length+1)) * (i+1);
-		else
-			r = r1 + ((r2-r1)/(t.length+1)) * (i+1);
+			let v2 = createVector(1, 0);
+			v2.setHeading(a2);
+			
+			let r;
+			if(v1.x < v2.x)
+				r = r2 - ((r2-r1)/(t.length+1)) * (i+1);
+			else
+				r = r1 + ((r2-r1)/(t.length+1)) * (i+1);
 
-		v1.mult(r);
-		v2.mult(r);
-	
-		pathids.push("path"+(textPathCount++));
+			v1.mult(r);
+			v2.mult(r);
 		
-		if(v1.x < v2.x)
-			s += `<path id="${pathids[i]}" d="M ${v1.x} ${v1.y} A ${r} ${r}, 0 0 1, ${v2.x} ${v2.y}" />\n`;
-		else
-			s += `<path id="${pathids[i]}" d="M ${v2.x} ${v2.y} A ${r} ${r}, 0 0 0, ${v1.x} ${v1.y}" />\n`;
+			pathids.push("path"+(textPathCount++));
+			
+			if(v1.x < v2.x)
+				s += `<path id="${pathids[i]}" d="M ${v1.x} ${v1.y} A ${r} ${r}, 0 0 1, ${v2.x} ${v2.y}" />\n`;
+			else
+				s += `<path id="${pathids[i]}" d="M ${v2.x} ${v2.y} A ${r} ${r}, 0 0 0, ${v1.x} ${v1.y}" />\n`;
+		}
 	}
 	
 	s += "</defs>\n<text>\n"

@@ -1,8 +1,17 @@
-let version = 13;
+let version = 14;
 
 let newInVersion =
 `
 Nyt i version ${version}:
+
+Fast Mode:
+	Tekst i lag 2 (virkemidler) er altid vertikal.
+	Lag 2 er altid dobbelt tykkelse.
+
+Design Mode:
+	Tekst kan nu gøres vertikal per lag. (Se guide)
+
+Nyt i version 13:
 
 Generelt:
 	Ikoner tilføjet. Vælg imellem Lille, Stor og Urban.

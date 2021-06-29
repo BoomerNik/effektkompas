@@ -40,7 +40,7 @@ Center B			<-- Starter nyt segment med default grå farve
 ----------------------------------
 
 ¤L1 r15 t3			<-- Ændrer stilen på lag 1 til at have en bredde på 15 og tekststørrelse på 3 (Default r10 t2)
-¤L2 t5				<-- Ændrer stilen på lag 2 til at have en tekststørrelse på 5
+¤L2 r20 v			<-- Ændrer stilen på lag 2 til at have en bredde på 20 og vertikal tekst
 
 Center B #g			<-- Starter nyt segment med grøn farve (r/g/b/y)
 	B11				<-- Tilføjer tekst til 1. lag kolonne 1

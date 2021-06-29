@@ -48,6 +48,8 @@ class Segment{
 			
 			textSize = style.t;
 			
+			verticalText = style.v;
+			
 			let r2 = r1 + style.r;
 			
 			s += this.layers[i].draw(r1, r2, a1, a2);

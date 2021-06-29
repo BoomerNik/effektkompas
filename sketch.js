@@ -97,7 +97,7 @@ function readTextToSVGDesignMode(){
 }
 
 function readTextToSVGFastMode(){
-	styling = {default: styling.default};
+	styling = {L1: {r: 20, v: true, t: 2}, default: styling.default};
 	
 	//Del linier og fjern blanke
 	let lines = textArea.value()
