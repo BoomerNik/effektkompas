@@ -25,32 +25,25 @@ function createArcSegment(r1, r2, a1, a2){
 	r1 += offset
 	r2 -= offset
 	
-	let v1 = createVector(r1, 0);
-	v1.setHeading(a1);
-	
-	let v2 = createVector(r2, 0);
-	v2.setHeading(a1);
-	
-	let v3 = createVector(r1, 0);
-	v3.setHeading(a2);
-	
-	let v4 = createVector(r2, 0);
-	v4.setHeading(a2);
+	let v1 = Vector.fromAngle(a1, r1);
+	let v2 = Vector.fromAngle(a1, r2);
+	let v3 = Vector.fromAngle(a2, r1);
+	let v4 = Vector.fromAngle(a2, r2);
 	
 	if(offset != 0){
-		let v12 = p5.Vector.sub(v2, v1);
-		v12.rotate(PI/2);
-		v12.setMag(offset);
+		let v12 = Vector.sub(v2, v1);
+		v12 = Vector.rot90CC(v12);
+		v12 = Vector.setMag(v12, offset);
 		
-		let v34 = p5.Vector.sub(v4, v3);
-		v34.rotate(-PI/2);
-		v34.setMag(offset);
+		let v34 = Vector.sub(v4, v3);
+		v34 = Vector.rot90C(v34);
+		v34 = Vector.setMag(v34, offset);
 		
-		v1.add(v12);
-		v2.add(v12);
+		v1 = Vector.add(v1, v12);
+		v2 = Vector.add(v2, v12);
 		
-		v3.add(v34);
-		v4.add(v34);
+		v3 = Vector.add(v3, v34);
+		v4 = Vector.add(v4, v34);
 	}
 	
 	let s = 
@@ -77,27 +70,21 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 		for(let i = 0; i < t.length; i++){
 			let a = a1+(a2-a1)/(t.length+1) * (i+1);
 			
-			let v1 = createVector(r1,0);
-			v1.setHeading(a);
-			
-			let v2 = createVector(r2,0);
-			v2.setHeading(a);
+			let v1 = Vector.fromAngle(a, r1);
+			let v2 = Vector.fromAngle(a, r2);
 			
 			pathids.push("path"+(textPathCount++));
 			
 			if(v1.x > v2.x)
-					[v1,v2] = [v2,v1];
+				[v1,v2] = [v2,v1];
 			
 			s += `<path id="${pathids[i]}" d="M ${v1.x} ${v1.y} L ${v2.x} ${v2.y}" />\n`;
 		}
 	}
 	else{
 		for(let i = 0; i < t.length; i++){
-			let v1 = createVector(1, 0);
-			v1.setHeading(a1);
-		
-			let v2 = createVector(1, 0);
-			v2.setHeading(a2);
+			let v1 = Vector.fromAngle(a1);
+			let v2 = Vector.fromAngle(a2);
 			
 			let r;
 			if(v1.x < v2.x)
@@ -105,8 +92,8 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 			else
 				r = r1 + ((r2-r1)/(t.length+1)) * (i+1);
 
-			v1.mult(r);
-			v2.mult(r);
+			v1 = Vector.scale(v1, r);
+			v2 = Vector.scale(v2, r);
 		
 			pathids.push("path"+(textPathCount++));
 			
@@ -129,9 +116,10 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 }
 
 function drawTextInArcSegmentPoint(t, r1, r2, a1, a2){	
-	let c = createVector((r2+r1)/2,0);
+	let r = (r2+r1)/2;
 	let a = (a1+a2)/2;
-	c.setHeading(a);
+	
+	let c = Vector.fromAngle(a, r);
 	
 	a = (degrees(a)+90) % 360;
 	
