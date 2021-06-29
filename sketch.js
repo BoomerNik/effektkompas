@@ -48,6 +48,7 @@ function updateSVG(){
 
 function readTextToSVGDesignMode(){
 	segments = [];
+	styling = {default: styling.default};
 	
 	//Del linier og fjern blanke
 	let lines = textArea.value()
