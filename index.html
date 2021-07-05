@@ -1,18 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  
-  <body>
-	<script src="sketch.js"></script>
-	<script src="svg.js"></script>
-	<script src="Vector.js"></script>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body onload="setup()">
+	<div id="svg-container">
+		<svg id="drawing" width="100%" height="100%" 
+			xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+		</svg>
+		<button id="resetButton" onClick="resetButtonClicked()">Reset</button>
+	</div>
+	
+	<div id="menu-conatiner">
+		<div id="nav-bar">
+			<button class="menu-button active" onclick="showTab(event, 'start-tab')">Start</button>
+			<button class="menu-button" onclick="showTab(event, 'kode-tab')">Kode</button>
+			<button id="udseendeButton" class="menu-button" onclick="showTab(event, 'udseende-tab')">Udseende</button>
+			<button class="menu-button" onclick="showTab(event, 'eksport-tab')">Eksport</button>
+			<button id="guideButton" class="menu-button" onclick="showTab(event, 'guide-tab')">Guide</button>
+		</div>
+		
+		<div id="start-tab" class="tab"  style="display:block">
+			<h1>Start</h1>
+			<div id="mode_radio" class="radio_container">
+				<input class="radio" id="fast_mode_radio" type="radio" name="mode" value="fast_mode" checked>
+				<label class="radio_label" for="fast_mode_radio">Fast Mode</label>
+				
+				<input class="radio" id="design_mode_radio" type="radio" name="mode" value="design_mode">
+				<label class="radio_label" for="design_mode_radio">Design Mode</label>
+			</div>
+			<br>
+			<div class="radio_container">
+				<input class="radio" id="icon1_radio" type="radio" name="icon" value="Intet" checked>
+				<label class="radio_label" for="icon1_radio">Intet</label>
+				
+				<input class="radio" id="icon2_radio" type="radio" name="icon" value="Lille">
+				<label class="radio_label" for="icon2_radio">Lille</label>
+				
+				<input class="radio" id="icon3_radio" type="radio" name="icon" value="Stor">
+				<label class="radio_label" for="icon3_radio">Stor</label>
+				
+				<input class="radio" id="icon4_radio" type="radio" name="icon" value="Urban">
+				<label class="radio_label" for="icon4_radio">Urban</label>
+			</div>
+			<br>
+			<br>
+			Titel: <input id="titleInput">
+		</div>
+		
+		<div id="kode-tab" class="tab">
+			<textarea id="kode-textarea">Skriv kode her</textarea>
+		</div>
+		
+		<div id="udseende-tab" class="tab">
+			<h1>Udseende</h1>
+			Zoom
+			<input type="range" min="0.1" max="3" step="0.01" id="zoomSlider" class="slider">
+			Rotation
+			<input type="range" min="0" max="1" value="0" step="0.001" id="rotationSlider" class="slider">
+			Center Radius
+			<input type="range" min="0" max="30" value="15" step="0.1" id="radiusSlider" class="slider">
+			Spacing
+			<input type="range" min="0" max="1" step="0.01" id="offsetSlider" class="slider">
+			Titel Tekststørrelse
+			<input type="range" min="1" max="7" value="4" step="0.01" id="titleTextSizeSlider" class="slider">
+			Tema Tekststørrelse
+			<input type="range" min="1" max="5" value="3" step="0.01" id="majTextSizeSlider" class="slider">
+			Tekststørrelse
+			<input type="range" min="1" max="3" value="2" step="0.01" id="minTextSizeSlider" class="slider">
+		</div>
+		
+		<div id="eksport-tab" class="tab">
+			<h1>Eksport</h1>
+			<button id="savePNGButton" class="button">Gem PNG</button>
+			<button id="saveSVGButton" class="button">Gem SVG</button>
+		</div>
+		
+		<div id="guide-tab" class="tab">
+			<iframe id="guideFrame" src="Guide.pdf"></iframe>
+		</div>
+		
+	</div>
+
+	<script src="Main.js"></script>
+	<script src="Gui.js"></script>
+	<script src="SVG.js"></script>
 	<script src="Model.js"></script>
-	<script src="Layout.js"></script>
+	<script src="Vector.js"></script>
 	<script src="Version.js"></script>
 	<script src="Ikoner.js"></script>
-  </body>
+</body>
+
 </html>

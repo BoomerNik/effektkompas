@@ -6,7 +6,8 @@ const colors = {
 	'default': ['#1e1e1e', '#3e3e3e', '#707070', '#a1a1a1']
 };
 
-let styling = {default: {r: 10, v: false, t: 2}};
+const defaultStyling = {r: 10, v: false, t: 2};
+let styling = {};
 
 class Segment{
 	constructor(t){
@@ -35,6 +36,7 @@ class Segment{
 		
 		for(let i = 0; i < this.layers.length; i++){
 			strokeColor = 'None';
+			textColor = 'white';
 			let colorNum = constrain(i, 0, this.colors.length-1);
 			fillColor = this.colors[colorNum];
 			
@@ -104,16 +106,16 @@ class Layer{
 	}
 }
 
-function drawModel(R, segments){
+function drawModel(R, angleOffset, segments){
 	let s = "";
 	
 	let ai = TWO_PI / segments.length;
 	
 	for(let i = 0; i < segments.length; i++){
-		a1 = ai*i;
+		a1 = ai*i + angleOffset;
 		a2 = a1+ai;
 		
-		s += segments[i].draw(R, a1, a2, colors[i]);
+		s += segments[i].draw(R, a1, a2);
 	}
 	
 	return s;

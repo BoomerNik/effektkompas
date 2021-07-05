@@ -28,3 +28,28 @@ class Vector{
 		return {x: v.x/l*m, y: v.y/l*m};
 	}
 }
+
+const TWO_PI = 6.283185307;
+
+function constrain(v, min, max){
+	let val = Math.min(v, max);
+	val = Math.max(val, min);
+	return val;
+}
+
+function eval2(S){
+	try{
+		return eval(S.replace(',','.'));
+	}
+	catch(err){
+		try{
+			return eval(S.replace(',','.')+'1');
+		}
+		catch(err2){
+			let a = 'Teksten: "'+S+'" kunne ikke oversættes til et tal';
+			console.error(a);
+		}
+	}
+	
+	return 1;
+}
