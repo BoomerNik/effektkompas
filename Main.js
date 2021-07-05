@@ -8,7 +8,7 @@ function setup(){
 }
 
 function createSVG(){
-	let s = "text {font-family: Gotham; font-weight: 325}";
+	let s = "<style>text {font-family: Gotham; font-weight: 325}</style>";
 	
 	let rotationOffset = rotationSlider.value * TWO_PI;
 	let radius = radiusSlider.value * 1;
