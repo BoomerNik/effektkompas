@@ -1,52 +1,9 @@
-let version = 14;
+let version = "2.0";
 
 let newInVersion =
 `
-Nyt i version ${version}:
+VERSION 2.0!
 
-Fast Mode:
-	Tekst i lag 2 (virkemidler) er altid vertikal.
-	Lag 2 er altid dobbelt tykkelse.
-
-Design Mode:
-	Tekst kan nu gøres vertikal per lag. (Se guide)
-
-Nyt i version 13:
-
-Generelt:
-	Ikoner tilføjet. Vælg imellem Lille, Stor og Urban.
-	
-
-Nyt i version 12
-
-Generelt:
-	Man kan nu bruge både punktum og komma i decimaltal.
-	Farver gjort mørkere iht. skabelon.
-	"Gul" farve tilføjet. Kode: #y
-	
-Fejl rettet:
-	Tekst nederst har linjerne i rigtig rækkefølge nu.
-
-Nyt i version 11
-
-Fejl rettet:
-	Fejl i svg format rettet.
-	Export til svg og png skulle virke igen.
-
-Generelt:
-	Tekststørelse slider fjernet. Brug styling i design mode i stedet (Se guide).
-
-Nyt i version 10:
-
-Generelt:
-	Denne info-boks er ny!
-	Guide-knap tilføjet.
-	Tekst læser nu altid fra venstre til højre.
-	Tekst input felt er større.
-	Mulighed for at tegne røde cirkler fjernet.
-
-Design Mode:
-	Mulighed for at ændre tekststørrelse per lag. (Se guide)
-	Mulighed for at ændre tykkelse på lag per lag. (Se guide)
+ALT ER NYT!
 
 `;
