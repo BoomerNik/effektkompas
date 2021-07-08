@@ -4,7 +4,7 @@ let strokeColor = 'black';
 let fillColor = 'None';
 
 let textSize = 2;
-let textColor = 'white';
+let textColor = 'red';
 let verticalText = false;
 
 //Counters for ids
@@ -42,13 +42,15 @@ function createArcSegment(r1, r2, a1, a2){
 	
 	let id = "path"+count.path++;
 	
+	let large = (a2-a1 < PI) ? "0" : "1";
+
 	let s = 
 	`<path id="${id}" stroke="${strokeColor}" fill="${fillColor}"
 		d="
 		M ${v1.x} ${v1.y} 
-		A ${r1} ${r1}, 0 0 1, ${v3.x} ${v3.y}
+		A ${r1} ${r1}, 0 ${large} 1, ${v3.x} ${v3.y}
 		L ${v4.x} ${v4.y}
-		A ${r2} ${r2}, 0 0 0, ${v2.x} ${v2.y}
+		A ${r2} ${r2}, 0 ${large} 0, ${v2.x} ${v2.y}
 		z"/>\n`
 	
 	return s;
@@ -103,10 +105,21 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 			let id = "defpath"+(count.defPath++);
 			pathids.push(id);
 			
-			if(v1.x < v2.x)
-				s += `<path id="${id}" d="M ${v1.x} ${v1.y} A ${r} ${r}, 0 0 1, ${v2.x} ${v2.y}" />\n`;
-			else
-				s += `<path id="${id}" d="M ${v2.x} ${v2.y} A ${r} ${r}, 0 0 0, ${v1.x} ${v1.y}" />\n`;
+			if(Math.abs(v1.x-v2.x) < 0.01 && Math.abs(v1.y-v2.y) < 0.01){
+				console.log("hej");
+				let vm = Vector.rot90CC(v1);
+				vm = Vector.setMag(vm, offset);
+				v1 = Vector.add(v1, vm);
+				v2 = Vector.sub(v2, vm);
+			}
+			
+			let large = (a2-a1 < PI) ? "0" : "1";
+			let sweep = (v1.x > v2.x) ? "0" : "1"
+			
+			if(v1.x > v2.x)
+				[v1,v2] = [v2,v1];
+			
+			s += `<path id="${id}" d="M ${v1.x} ${v1.y} A ${r} ${r} 0 1 ${sweep}, ${v2.x} ${v2.y}" />\n`;
 		}
 	}
 	

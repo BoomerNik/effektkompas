@@ -29,6 +29,7 @@ class Vector{
 	}
 }
 
+const PI = 3.1416;
 const TWO_PI = 6.283185307;
 
 function constrain(v, min, max){

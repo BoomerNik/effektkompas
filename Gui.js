@@ -39,17 +39,39 @@ function svgContainerMouseMove(event){
 
 function svgContainerWheel(event){
 	let dy = event.deltaY;
-	let d = 1;
 	
-	if(dy > 0)
-		d = 0.9;
-	else
-		d = 10/9;
+	if(event.shiftKey){
+		let d;
+		if(dy > 0)
+			d = -0.01;
+		else
+			d = 0.01;
+		
+		let r = parseFloat(rotationSlider.value) + d;
+		
+		if(r < 0)
+			rotationSlider.value = 1 - r;
+		else if(r > 1)
+			rotationSlider.value = r - 1;
+		else
+			rotationSlider.value = r;
+		
+		updateSVG();
+	}
+	else{
+		let d = 1;
+		
+		if(dy > 0)
+			d = 0.9;
+		else
+			d = 10/9;
+		
+		view.zoom *= d;
+		view.zoom = constrain(view.zoom, 0.1, 3);
+		zoomSlider.value = view.zoom;
+		updateViewBox();
+	}
 	
-	view.zoom *= d;
-	view.zoom = constrain(view.zoom, 0.1, 3);
-	zoomSlider.value = view.zoom;
-	updateViewBox();
 	event.preventDefault();
 }
 
@@ -216,9 +238,9 @@ function setupGUI(){
 	radiusSlider = document.getElementById("radiusSlider");
 	radiusSlider.addEventListener("input", updateSVG);
 	
-	offsetSlider = document.getElementById("offsetSlider");
-	offsetSlider.addEventListener("input", offsetSliderMoved);
-	offsetSlider.value = offset;
+	// offsetSlider = document.getElementById("offsetSlider");
+	// offsetSlider.addEventListener("input", offsetSliderMoved);
+	// offsetSlider.value = offset;
 	
 	titleTextSizeSlider = document.getElementById("titleTextSizeSlider");
 	titleTextSizeSlider.addEventListener("input", updateSVG);
