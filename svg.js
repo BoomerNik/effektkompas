@@ -119,7 +119,7 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 			if(v1.x > v2.x)
 				[v1,v2] = [v2,v1];
 			
-			s += `<path id="${id}" d="M ${v1.x} ${v1.y} A ${r} ${r} 0 1 ${sweep}, ${v2.x} ${v2.y}" />\n`;
+			s += `<path id="${id}" d="M ${v1.x} ${v1.y} A ${r} ${r} 0 ${large} ${sweep}, ${v2.x} ${v2.y}" />\n`;
 		}
 	}
 	
