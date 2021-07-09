@@ -47,14 +47,9 @@ function svgContainerWheel(event){
 		else
 			d = 0.01;
 		
-		let r = parseFloat(rotationSlider.value) + d;
+		let r = +rotationSlider.value + d;
 		
-		if(r < 0)
-			rotationSlider.value = 1 - r;
-		else if(r > 1)
-			rotationSlider.value = r - 1;
-		else
-			rotationSlider.value = r;
+		rotationSlider.value = r - Math.floor(r); //Wrap to 0-1  {a - floor(a/max) * max}
 		
 		updateSVG();
 	}
@@ -66,9 +61,7 @@ function svgContainerWheel(event){
 		else
 			d = 10/9;
 		
-		view.zoom *= d;
-		view.zoom = constrain(view.zoom, 0.1, 3);
-		zoomSlider.value = view.zoom;
+		zoomSlider.value *= d;
 		updateViewBox();
 	}
 	
@@ -76,9 +69,10 @@ function svgContainerWheel(event){
 }
 
 function updateViewBox(){	
-	let x = view.x / view.zoom;
-	let y = view.y / view.zoom;
-	let wh = 1 / view.zoom * 100;
+	let zoom = +zoomSlider.value;
+	let x = view.x / zoom;
+	let y = view.y / zoom;
+	let wh = 1 / zoom * 100;
 	
 	let viewbox = `${x} ${y} ${wh} ${wh}`;
 		
@@ -87,7 +81,6 @@ function updateViewBox(){
 
 function resetButtonClicked(){
 	view = {...defaultView};
-	zoomSlider.value = view.zoom;
 	updateViewBox();
 }
 
@@ -103,18 +96,12 @@ function textAreaKeyDown(e){
 		
 		return false;
 	}
-	else if(e.key == 'Enter' && textArea.selectionStart == textArea.selectionEnd){
+	else if(e.ctrlKey && e.key == 'Enter' && textArea.selectionStart == textArea.selectionEnd){
 		let pos = textArea.selectionStart;
 		
 		let t = textArea.value;
-		
-		if(e.ctrlKey){
-			textArea.value = t.substring(0, pos) + "\\\\" + t.substring(pos);
-		}
-		else {
-			textArea.value = t.substring(0, pos) + "\n\t" + t.substring(pos);
-		}
-		
+
+		textArea.value = t.substring(0, pos) + "\\\\" + t.substring(pos);
 		textArea.selectionStart = textArea.selectionEnd = pos + 2
 		
 		e.preventDefault();
@@ -141,46 +128,6 @@ function modeChanged(){
 	}
 }
 
-function zoomSliderMoved(){
-	view.zoom = parseFloat(zoomSlider.value);
-	updateViewBox();
-}
-
-function offsetSliderMoved(){
-	offset = parseFloat(offsetSlider.value);
-	updateSVG();
-}
-
-function savePNGButtonPressed(){
-	let img = new Image();
-	img.onload = () => {
-		let can = document.createElement('canvas');
-		can.width = 1500;
-		can.height = 1500;
-		ctx = can.getContext("2d");
-		ctx.drawImage(img,0,0, can.width, can.height);
-		
-		let link = document.createElement('a');
-		link.download = "Effektkompas.png";
-		link.href = can.toDataURL("image/png;base64");
-		link.click();
-	}
-	img.onerror = () => {
-		alert("Fejl: Kunne ikke lave billede");
-	}
-	
-	img.src = "data:image/svg+xml;base64,"+
-		btoa(encodeURIComponent(svg.outerHTML)
-		.replace(/%([0-9A-F]{2})/g, function(match, p1) {return String.fromCharCode('0x' + p1);}));;
-}
-
-function saveSVGButtonPressed(){
-	let blob = new Blob([svg.outerHTML], {type: "text/plain;charset=utf-8"});
-	let link = document.createElement('a');
-	link.download = "Effektkompas.svg";
-	link.href = URL.createObjectURL(blob);
-	link.click();
-}
 
 /****************
 ******SETUP******
@@ -199,7 +146,7 @@ let titleTextSizeSlider;
 let majTextSizeSlider;
 let minTextSizeSlider;
 
-let defaultView = {x: -50, y: -50, zoom: 0.75};
+let defaultView = {x: -50, y: -50};
 let view = {...defaultView};
 
 function setupGUI(){
@@ -212,7 +159,6 @@ function setupGUI(){
 	svgContainer.addEventListener("wheel", svgContainerWheel);
 
 	svg = document.getElementById("drawing");
-	updateViewBox();
 
 	//Start tab
 	document.getElementById("mode_radio").addEventListener("click", modeChanged);
@@ -229,18 +175,13 @@ function setupGUI(){
 
 	//Udseende tab
 	zoomSlider = document.getElementById("zoomSlider");
-	zoomSlider.addEventListener("input", zoomSliderMoved);
-	zoomSlider.value = defaultView.zoom;
+	zoomSlider.addEventListener("input", updateViewBox);
 	
 	rotationSlider = document.getElementById("rotationSlider");
 	rotationSlider.addEventListener("input", updateSVG);
 	
 	radiusSlider = document.getElementById("radiusSlider");
 	radiusSlider.addEventListener("input", updateSVG);
-	
-	// offsetSlider = document.getElementById("offsetSlider");
-	// offsetSlider.addEventListener("input", offsetSliderMoved);
-	// offsetSlider.value = offset;
 	
 	titleTextSizeSlider = document.getElementById("titleTextSizeSlider");
 	titleTextSizeSlider.addEventListener("input", updateSVG);
@@ -253,8 +194,8 @@ function setupGUI(){
 	
 	
 	//Eksport tab
-	document.getElementById("savePNGButton").addEventListener("click", savePNGButtonPressed);
-	document.getElementById("saveSVGButton").addEventListener("click", saveSVGButtonPressed);
+	document.getElementById("savePNGButton").addEventListener("click", savePNG);
+	document.getElementById("saveSVGButton").addEventListener("click", saveSVG);
 	
 	//Guide tab
 	document.getElementById("guideButton").addEventListener("click", reloadGuide);

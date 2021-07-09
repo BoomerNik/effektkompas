@@ -3,20 +3,21 @@ let segments = [];
 function setup(){
 	setupGUI();
 	
-	textArea.value = loadCookie();
+	loadCookie();
+	updateViewBox();
 	updateSVG();
 }
 
 function createSVG(){
 	let s = "<style>text {font-family: Gotham; font-weight: 325}</style>";
 	
-	let rotationOffset = rotationSlider.value * TWO_PI;
-	let radius = radiusSlider.value * 1;
+	let rotationOffset = +rotationSlider.value * TWO_PI;
+	let radius = +radiusSlider.value;
 	s += drawModel(radius, rotationOffset, segments);
 	
 	let ikon = document.querySelector("input[name=icon]:checked").value;
-	ikon = ikoner[ikon];
-	s += ikon;
+	s += ikoner[ikon];
+	
 	
 	
 	let title = titleInput.value;
@@ -37,6 +38,7 @@ function updateSVG(){
 	}
 	
 	svg.innerHTML = createSVG();
+	saveCookie();
 }
 
 function readTextToSVGDesignMode(){
@@ -85,15 +87,13 @@ function readTextToSVGDesignMode(){
 			}
 		}
 	}
-	
-	saveCookie();
 }
 
 function readTextToSVGFastMode(){
 	styling = {default: {...defaultStyling}, L0: {...defaultStyling}, L1: {...defaultStyling}};
 	
-	let majT = parseFloat(majTextSizeSlider.value);
-	let minT = parseFloat(minTextSizeSlider.value);
+	let majT = +majTextSizeSlider.value;
+	let minT = +minTextSizeSlider.value;
 	styling.default.t = minT;
 	styling.L0.t = majT;
 	styling.L1 = {r: 20, v: true, t: minT};
@@ -174,20 +174,6 @@ function readTextToSVGFastMode(){
 			
 		}
 	}
-	
-	saveCookie();
-}
-
-function saveCookie(){
-	localStorage.setItem("EffektkompasTekst", encodeURIComponent(textArea.value));
-}
-
-function loadCookie(){
-	let c = localStorage.getItem("EffektkompasTekst");
-	if(c)	
-		return decodeURIComponent(c);
-	
-	return "";
 }
 
 function checkVersion(){

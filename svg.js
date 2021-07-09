@@ -106,7 +106,6 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 			pathids.push(id);
 			
 			if(Math.abs(v1.x-v2.x) < 0.01 && Math.abs(v1.y-v2.y) < 0.01){
-				console.log("hej");
 				let vm = Vector.rot90CC(v1);
 				vm = Vector.setMag(vm, offset);
 				v1 = Vector.add(v1, vm);
