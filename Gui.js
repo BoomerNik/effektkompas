@@ -196,6 +196,8 @@ function setupGUI(){
 	//Eksport tab
 	document.getElementById("savePNGButton").addEventListener("click", savePNG);
 	document.getElementById("saveSVGButton").addEventListener("click", saveSVG);
+	document.getElementById("saveJSONButton").addEventListener("click", saveJSON);
+	document.getElementById("loadJSONButton").addEventListener("click", loadJSON);
 	
 	//Guide tab
 	document.getElementById("guideButton").addEventListener("click", reloadGuide);

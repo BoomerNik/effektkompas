@@ -13,7 +13,7 @@ function savePNG(){
 		can.width = 1500;
 		can.height = 1500;
 		ctx = can.getContext("2d");
-		ctx.drawImage(img,0,0, can.width, can.height);
+		ctx.drawImage(img, 0, 0, can.width, can.height);
 		
 		let link = document.createElement('a');
 		link.download = "Effektkompas.png";
@@ -81,4 +81,17 @@ function readJSON(s){
 	modeChanged();
 	updateViewBox();
 	updateSVG();
+}
+
+function saveJSON(){
+	let blob = new Blob([createJSON()], {type: "text/plain;charset=utf-8"});
+
+	let link = document.createElement('a');
+	link.download = "Effektkompas.json";
+	link.href = URL.createObjectURL(blob);
+	link.click();
+}
+
+function loadJSON(){
+	console.log("Load");
 }
