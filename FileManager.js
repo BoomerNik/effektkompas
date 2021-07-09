@@ -57,7 +57,7 @@ function createJSON(){
 	json.majTextSize = majTextSizeSlider.value;
 	json.minTextSize = minTextSizeSlider.value;
 	
-	return JSON.stringify(json);
+	return JSON.stringify(json, null, "\t");
 }
 
 function readJSON(s){

@@ -18,14 +18,15 @@ function createSVG(){
 	let ikon = document.querySelector("input[name=icon]:checked").value;
 	s += ikoner[ikon];
 	
-	
+	s += createWatermark(43,55,15);
 	
 	let title = titleInput.value;
 	let titleSize = titleTextSizeSlider.value;
 	textColor = "black";
 	textSize = titleSize;
+	let titleY = ikon == "Intet" ? 0:5;
 	if(title.length > 0)
-		s += createText(title, 0, 5);
+		s += createText(title, 0, titleY);
 	
 	return s;
 }

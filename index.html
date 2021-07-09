@@ -17,7 +17,7 @@
 	<div id="menu-conatiner">
 		<div id="nav-bar">
 			<button class="menu-button active" onclick="showTab(event, 'start-tab')">Start</button>
-			<button class="menu-button" onclick="showTab(event, 'kode-tab')">Kode</button>
+			<button class="menu-button" onclick="showTab(event, 'tekst-tab')">Tekst</button>
 			<button id="udseendeButton" class="menu-button" onclick="showTab(event, 'udseende-tab')">Udseende</button>
 			<button class="menu-button" onclick="showTab(event, 'eksport-tab')">Eksport</button>
 			<button id="guideButton" class="menu-button" onclick="showTab(event, 'guide-tab')">Guide</button>
@@ -26,10 +26,10 @@
 		<div id="start-tab" class="tab"  style="display:block">
 			<h1>Start</h1>
 			<div id="mode_radio" class="radio_container">
-				<input class="radio" id="fast_mode_radio" type="radio" name="mode" value="fast_mode" checked>
+				<input class="radio" id="fast_mode_radio" type="radio" name="mode" value="fast_mode">
 				<label class="radio_label" for="fast_mode_radio">Fast Mode</label>
 				
-				<input class="radio" id="design_mode_radio" type="radio" name="mode" value="design_mode">
+				<input class="radio" id="design_mode_radio" type="radio" name="mode" value="design_mode"  checked>
 				<label class="radio_label" for="design_mode_radio">Design Mode</label>
 			</div>
 			<br>
@@ -51,14 +51,14 @@
 			Titel: <input id="titleInput">
 		</div>
 		
-		<div id="kode-tab" class="tab">
+		<div id="tekst-tab" class="tab">
 			<textarea id="kode-textarea">Skriv kode her</textarea>
 		</div>
 		
 		<div id="udseende-tab" class="tab">
 			<h1>Udseende</h1>
 			Zoom
-			<input type="range" min="0.1" max="3" step="0.01" id="zoomSlider" class="slider">
+			<input type="range" min="0.1" max="3" value="0.7" step="0.01" id="zoomSlider" class="slider">
 			Rotation
 			<input type="range" min="0" max="1" value="0" step="0.001" id="rotationSlider" class="slider">
 			Center Radius

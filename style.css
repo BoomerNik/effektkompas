@@ -76,6 +76,8 @@ body{
 	height: 100%;
 	resize: none;
 	
+	tab-size: 4;
+	
 	white-space: pre;
 	overflow-wrap: normal;
 	overflow-x: auto;
