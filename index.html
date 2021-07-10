@@ -25,14 +25,10 @@
 		
 		<div id="start-tab" class="tab"  style="display:block">
 			<h1>Start</h1>
-			<div id="mode_radio" class="radio_container">
-				<input class="radio" id="fast_mode_radio" type="radio" name="mode" value="fast_mode">
-				<label class="radio_label" for="fast_mode_radio">Fast Mode</label>
-				
-				<input class="radio" id="design_mode_radio" type="radio" name="mode" value="design_mode"  checked>
-				<label class="radio_label" for="design_mode_radio">Design Mode</label>
-			</div>
-			<br>
+			<h3>Titel:</h3>
+			<input id="titleInput">
+			
+			<h3>Ikon:</h3>
 			<div class="radio_container">
 				<input class="radio" id="icon1_radio" type="radio" name="icon" value="Intet" checked>
 				<label class="radio_label" for="icon1_radio">Intet</label>
@@ -46,9 +42,10 @@
 				<input class="radio" id="icon4_radio" type="radio" name="icon" value="Urban">
 				<label class="radio_label" for="icon4_radio">Urban</label>
 			</div>
-			<br>
-			<br>
-			Titel: <input id="titleInput">
+			
+			<h3>Skabeloner</h3>
+			<button class="button" onclick="readJSON(Eksempler.Lille)">Lille</button>
+			<button class="button" onclick="readJSON(Eksempler.Stor)">Stor</button>
 		</div>
 		
 		<div id="tekst-tab" class="tab">
@@ -96,6 +93,7 @@
 	<script src="Version.js"></script>
 	<script src="Ikoner.js"></script>
 	<script src="FileManager.js"></script>
+	<script src="Eksempler.js"></script>
 </body>
 
 </html>

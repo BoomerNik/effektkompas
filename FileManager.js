@@ -35,8 +35,10 @@ function saveCookie(){
 
 function loadCookie(){
 	let c = localStorage.getItem("EffektkompasData");
-	if(c)	
-		readJSON(c);
+	if(c){
+		const json = JSON.parse(c);
+		readJSON(json);
+	}
 }
 
 function createJSON(){
@@ -44,7 +46,6 @@ function createJSON(){
 	
 	//Start
 	json.title = titleInput.value;
-	json.mode = document.querySelector("input[name=mode]:checked").value;
 	json.icon = document.querySelector("input[name=icon]:checked").value;
 	
 	//Kode
@@ -60,12 +61,9 @@ function createJSON(){
 	return JSON.stringify(json, null, "\t");
 }
 
-function readJSON(s){
-	const json = JSON.parse(s);
-	
+function readJSON(json){	
 	//Start
 	titleInput.value = json.title;
-	document.querySelector(`input[name=mode][value=${json.mode}]`).checked = true;
 	document.querySelector(`input[name=icon][value=${json.icon}]`).checked = true;
 	
 	//Kode
@@ -78,7 +76,6 @@ function readJSON(s){
 	majTextSizeSlider.value = json.majTextSize;
 	minTextSizeSlider.value = json.minTextSize;
 	
-	modeChanged();
 	updateViewBox();
 	updateSVG();
 }
@@ -99,7 +96,8 @@ function loadJSON(){
 	fileInput.onchange = () => {		
 		let reader = new FileReader();
 		reader.onload = (e) => {
-			readJSON(reader.result);
+			const json = JSON.parse(reader.result);
+			readJSON(json);
 		}
 		reader.readAsText(fileInput.files[0]);
 	}

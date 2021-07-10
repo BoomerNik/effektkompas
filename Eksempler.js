@@ -1,78 +1,24 @@
 const Eksempler = {};
-Eksempler.SkabelonStor = {mode: "Design", code:
-`¤L1 r20 v
+Eksempler.Stor = 
+{
+	"title": "Stor Skabelon",
+	"icon": "Stor",
+	"text": "¤L1 r20 v\n\t\nTema 1 #y\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t-\n\tOplevelser a\n\tOplevelser b\n\t-\n\tHandlinger a\n\tHandlinger b\n\nTema 2 #r\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t-\n\tOplevelser a\n\tOplevelser b\n\t-\n\tHandlinger a\n\tHandlinger b\n\t\nTema 3 #g\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t-\n\tOplevelser a\n\tOplevelser b\n\t-\n\tHandlinger a\n\tHandlinger b\n\t\nTema 4 #b3\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t-\n\tOplevelser a\n\tOplevelser b\n\t-\n\tHandlinger a\n\tHandlinger b",
+	"rotation": "0",
+	"centerRadius": "15",
+	"titleTextSize": "4",
+	"majTextSize": "3",
+	"minTextSize": "2"
+};
 	
-Tema 1 #y
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d
-	-
-	Oplevelser a
-	Oplevelser b
-	-
-	Handlinger a
-	Handlinger b
-
-Tema 2 #r
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d
-	-
-	Oplevelser a
-	Oplevelser b
-	-
-	Handlinger a
-	Handlinger b
-	
-Tema 3 #g
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d
-	-
-	Oplevelser a
-	Oplevelser b
-	-
-	Handlinger a
-	Handlinger b
-	
-Tema 4 #b3
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d
-	-
-	Oplevelser a
-	Oplevelser b
-	-
-	Handlinger a
-	Handlinger b`};
-	
-Eksempler.SkabelonLille = {mode: "Design", code:
-`¤L1 r20 v
-	
-Tema 1 #y
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d
-
-Tema 2 #r
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d
-	
-Tema 3 #g
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d
-	
-Tema 4 #b3
-	Virkemiddel a
-	Virkemiddel b
-	Virkemiddel c
-	Virkemiddel d`};
+Eksempler.Lille = 
+{
+	"title": "Lille Skabelon",
+	"icon": "Lille",
+	"text": "¤L1 r20 v\n\t\nTema 1 #y\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\nTema 2 #r\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t\nTema 3 #g\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t\nTema 4 #b3\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d",
+	"rotation": "0",
+	"centerRadius": "15",
+	"titleTextSize": "4",
+	"majTextSize": "3",
+	"minTextSize": "2"
+};

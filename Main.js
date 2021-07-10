@@ -32,21 +32,17 @@ function createSVG(){
 }
 
 function updateSVG(){
-	let mode = document.querySelector("input[name=mode]:checked").value;
-	switch(mode){
-		case 'fast_mode': readTextToSVGFastMode(); break;
-		case 'design_mode': readTextToSVGDesignMode(); break;
-	}
+	readTextToSVG();
 	
 	svg.innerHTML = createSVG();
 	saveCookie();
 }
 
-function readTextToSVGDesignMode(){
+function readTextToSVG(){
 	segments = [];
 	styling = {default: {...defaultStyling}};
 	
-	//Del linier og fjern blanke
+	//Del linjer og fjern blanke
 	let lines = textArea.value
 		.split("\n")
 		.filter(l => l.trim() != "");
@@ -87,102 +83,6 @@ function readTextToSVGDesignMode(){
 				seg.layers[seg.layers.length-1].addItem(t, size);
 			}
 		}
-	}
-}
-
-function readTextToSVGFastMode(){
-	styling = {default: {...defaultStyling}, L0: {...defaultStyling}, L1: {...defaultStyling}};
-	
-	let majT = +majTextSizeSlider.value;
-	let minT = +minTextSizeSlider.value;
-	styling.default.t = minT;
-	styling.L0.t = majT;
-	styling.L1 = {r: 20, v: true, t: minT};
-	
-	
-	//Del linier og fjern blanke
-	let lines = textArea.value
-		.split("\n")
-		.filter(l => l.trim()!="");
-	
-	//Prepocess
-	let record = 0;
-	let count = 0;
-	for(const l of lines){
-		if(!l.startsWith("\t") || l.trim() == "-"){
-			record = Math.max(record, count);
-			count = 0;
-		}
-		else
-			count++;
-	}
-	record = Math.max(record, count);
-	
-	let repeat = true;
-	while(repeat){
-		repeat = false;
-		count = 0;
-		
-		for(let i = 1; i < lines.length; i++){
-			let l = lines[i];
-			
-			if(!l.startsWith("\t") || l.trim() == "-"){
-				if(count < record){
-					lines.splice(i, 0, "\t.");
-					
-					repeat = true;
-					break;
-				}
-				
-				count = 0;
-			}
-			else
-				count++;
-			
-			if(i == lines.length-1)
-				if(count < record)
-				{
-					lines.push("\t.");
-					repeat = true;
-				}
-		}
-	}
-	
-	//Process
-	segments = [];
-	let layerNum;
-	
-	for(let l of lines){
-		if(!l.startsWith("\t")){
-			segments.push(new Segment(l));
-			
-			layerNum = 1;
-		}
-		else {		
-			let seg = segments.last();
-			l = l.trim();
-			
-			if(l == "-"){
-				layerNum = 1;
-			}
-			else {
-				if(seg.layers.length == layerNum)
-					seg.addLayer();
-				
-				seg.layers[layerNum].addItem(l);
-				layerNum++;
-			}
-			
-		}
-	}
-}
-
-function checkVersion(){
-	let v = localStorage.getItem("EffektkompasVersion");
-	
-	if(v != version){
-		localStorage.setItem("EffektkompasVersion", version);
-		alert(newInVersion);
 	}
 }
 

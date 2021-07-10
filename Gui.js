@@ -112,22 +112,6 @@ function textAreaKeyDown(e){
 	return true;
 }
 
-function modeChanged(){
-	let mode = document.querySelector("input[name=mode]:checked").value;
-	
-	switch(mode){
-		case 'fast_mode': 
-			majTextSizeSlider.disabled = false;
-			minTextSizeSlider.disabled = false;
-			break;
-			
-		case 'design_mode': 
-			majTextSizeSlider.disabled = true;
-			minTextSizeSlider.disabled = true; 
-			break;
-	}
-}
-
 
 /****************
 ******SETUP******
@@ -161,7 +145,6 @@ function setupGUI(){
 	svg = document.getElementById("drawing");
 
 	//Start tab
-	document.getElementById("mode_radio").addEventListener("click", modeChanged);
 	titleInput = document.getElementById("titleInput");
 	titleInput.addEventListener("input", updateSVG);
 	
