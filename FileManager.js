@@ -93,5 +93,16 @@ function saveJSON(){
 }
 
 function loadJSON(){
-	console.log("Load");
+	let fileInput = document.createElement("input");
+	fileInput.setAttribute("type", "file");
+	
+	fileInput.onchange = () => {		
+		let reader = new FileReader();
+		reader.onload = (e) => {
+			readJSON(reader.result);
+		}
+		reader.readAsText(fileInput.files[0]);
+	}
+	
+	fileInput.click();
 }
