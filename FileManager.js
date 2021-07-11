@@ -39,6 +39,9 @@ function loadCookie(){
 		const json = JSON.parse(c);
 		readJSON(json);
 	}
+	else {
+		readJSON(Eksempler.Stor);
+	}
 }
 
 function createJSON(){
