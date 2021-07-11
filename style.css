@@ -1,15 +1,12 @@
 body{
 	margin: 0;
 	display: flex;
-	flex-wrap: wrap;
 	font-family: Gotham, sans-serif;
 	font-weight: lighter;
 }
 	
 #svg-container{
-	width: min(100vh, 100vw);
-	height: min(100vh, 100vw);
-	float: left;
+	flex: 0 1 100vh;
 	cursor: grab;
 	
 	box-sizing: border-box;
@@ -27,18 +24,21 @@ body{
 
 #menu-conatiner{
 	background: #104E45;
-	float: left;
-	flex: 1;
-	min-width: 500px;
+	
+	flex: 1 0 500px;
+	height: 100vh;
+	
 	display: flex;
 }
 
 #nav-bar{
 	background: #f1f1f1;
+	
+	flex: 0 0 80px;
+	height: 100vh;
+	
 	display: flex;
 	flex-direction: column;
-	width: 80px;
-	height: 100%;
 }
 
 .tab{
