@@ -47,7 +47,9 @@ function readTextToSVG(){
 		.split("\n")
 		.filter(l => l.trim() != "");
 	
+	//Læs linjer
 	for(let l of lines){
+		//Hvis styling
 		if(l.startsWith("¤")){
 			l = l.replace("¤", "").split(" ");
 			
@@ -63,27 +65,42 @@ function readTextToSVG(){
 					styling[l[0]][s1] = eval2(s2);
 			}
 		}
-		else if(!l.startsWith("\t")){
-			segments.push(new Segment(l));
-			segments.last().addLayer();
-		}
-		else{		
-			let seg = segments[segments.length-1];
+		else{
+			let tabs = countTabs(l);
 			
-			l = l.trim()
-			
-			if(l == "-"){
-				seg.layers.push(new Layer());
+			//Nyt segment
+			if(tabs == 0){
+				segments.push(new Segment(l));
+				segments.last().addLayer();
 			}
+			//Fortsæt segment
 			else{
-				let s = l.split("¤");
-				let t = s[0];
-				let size = s.length > 1 ? eval2(s[1]) : 1;
+				let seg = segments.last();
 				
-				seg.layers[seg.layers.length-1].addItem(t, size);
+				//Hvis der ikke der nok lag
+				for(let i = seg.layers.length; i <= tabs; i++){
+					seg.addLayer();
+				}
+				
+				l = l.split("¤");
+				let t = l[0];
+				let s = l.length == 2 ? eval2(l[1]) : 1;
+				seg.layers[tabs].addItem(t, s);
 			}
 		}
 	}
+}
+
+function countTabs(s){
+	let c = 0;
+	for(let i = 0; i < s.length; i++){
+		if(s[i] == "\t")
+			c++;
+		else
+			break;
+	}
+	
+	return c;
 }
 
 Array.prototype.last = function(item=null){
