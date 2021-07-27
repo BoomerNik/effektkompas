@@ -2,7 +2,7 @@ const ikoner = {};
 
 ikoner.Lille = 
 `
-<g transform="scale(0.07) translate(-298 -490)">
+<g class="icon" transform="scale(0.07) translate(-298 -490)">
 	<style type="text/css">.st0{fill:none;stroke:#625E5D;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}</style>
 	<polygon class="st0" points="364.5,407.34 298.25,347.9 232,407.34 232,494.02 364.5,494.02 "/>
 	<path class="st0" d="M287.68,422.29c-4.78,0.56-6.77,3.2-6.63,8.04c0.21,7.54,0.06,15.1,0.05,22.65c-0.01,4.01,0.39,7.68,5.85,7.31"/>
@@ -17,7 +17,7 @@ ikoner.Lille =
 
 ikoner.Stor = 
 `
-<g transform="scale(0.07) translate(-298 -490)">
+<g class="icon" transform="scale(0.07) translate(-298 -490)">
 	<style type="text/css">.st0{fill:none;stroke:#625E5D;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}</style>
 	<polygon class="st0" points="364.25,411.53 297.99,352.09 231.74,411.53 231.74,498.22 364.25,498.22 "/>
 	<polygon class="st0" points="468.78,429.83 416.51,382.94 364.25,429.83 364.25,498.22 468.78,498.22 "/>
@@ -33,7 +33,7 @@ ikoner.Stor =
 
 ikoner.Urban =
 `
-<g transform="scale(0.07) translate(-298 -470)">
+<g class="icon" transform="scale(0.07) translate(-298 -470)">
 	<style type="text/css">.st0{fill:none;stroke:#625E5D;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}</style>
 	<polygon class="st0" points="493.06,413.72 440.79,366.83 388.53,413.72 388.53,482.11 493.06,482.11 "/>
 	<polygon class="st0" points="242.38,390.45 172.33,327.59 102.27,390.45 102.27,482.11 242.38,482.11 "/>
