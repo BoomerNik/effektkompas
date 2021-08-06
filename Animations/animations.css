@@ -18,7 +18,11 @@
 }   
 
 path {
-	stroke: red;
+	stroke: black;
 	stroke-width: 0.2;
-	fill: red;
+}
+
+.icon {
+	opacity: 0;
+	transition: opacity 0.01s;
 }

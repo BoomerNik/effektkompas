@@ -6,10 +6,11 @@ function setup(){
 	loadCookie();
 	updateViewBox();
 	updateSVG();
+	drawAndFade();
 }
 
 function createSVG(){
-	let s = "<style>text {font-family: Gotham; font-weight: 325}</style>";
+	let s = "\n<style>text {font-family: Gotham; font-weight: 325}</style>\n";
 	
 	let rotationOffset = +rotationSlider.value * TWO_PI;
 	let radius = +radiusSlider.value;
@@ -82,6 +83,7 @@ function readTextToSVG(){
 					seg.addLayer();
 				}
 				
+				l = l.trim();
 				l = l.split("¤");
 				let t = l[0];
 				let s = l.length == 2 ? eval2(l[1]) : 1;

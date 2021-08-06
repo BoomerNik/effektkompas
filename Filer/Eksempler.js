@@ -18,7 +18,7 @@ Eksempler.Stor =
 	"text": "¤L1 r20 v\n\t\nTema 1 #y\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t\n\t\tOplevelser a\n\t\tOplevelser b\n\n\t\t\tHandlinger a\n\t\t\tHandlinger b\n\nTema 2 #r\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t\n\t\tOplevelser a\n\t\tOplevelser b\n\t\n\t\t\tHandlinger a\n\t\t\tHandlinger b\n\t\nTema 3 #g\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t\n\t\tOplevelser a\n\t\tOplevelser b\n\t\n\t\t\tHandlinger a\n\t\t\tHandlinger b\n\t\nTema 4 #b3\n\tVirkemiddel a\n\tVirkemiddel b\n\tVirkemiddel c\n\tVirkemiddel d\n\t\n\t\tOplevelser a\n\t\tOplevelser b\n\t\n\t\t\tHandlinger a\n\t\t\tHandlinger b",
 	"rotation": "0",
 	"centerRadius": "15",
-	"titleTextSize": "4",
+	"titleTextSize": "3.7",
 	"majTextSize": "3",
 	"minTextSize": "2"
 };
@@ -42,7 +42,7 @@ Eksempler.Stor2 =
 	"text": "¤L1 r20 v\n\t\nTema 1 #y\n\tVirkemiddel a\n\tVirkemiddel b\n\t\tOplevelser a\n\t\t\tHandlinger a\n\n\tVirkemiddel c\n\tVirkemiddel d\n\t\tOplevelser b\n\t\t\tHandlinger b\n\nTema 2 #r\n\tVirkemiddel a\n\tVirkemiddel b\n\t\tOplevelser a\n\t\t\tHandlinger a\n\n\tVirkemiddel c\n\tVirkemiddel d\n\t\tOplevelser b\n\t\t\tHandlinger b\n\t\nTema 3 #g\n\tVirkemiddel a\n\tVirkemiddel b\n\t\tOplevelser a\n\t\t\tHandlinger a\n\n\tVirkemiddel c\n\tVirkemiddel d\n\t\tOplevelser b\n\t\t\tHandlinger b\n\t\nTema 4 #b3\n\tVirkemiddel a\n\tVirkemiddel b\n\t\tOplevelser a\n\t\t\tHandlinger a\n\n\tVirkemiddel c\n\tVirkemiddel d\n\t\tOplevelser b\n\t\t\tHandlinger b",
 	"rotation": "0",
 	"centerRadius": "15",
-	"titleTextSize": "4",
+	"titleTextSize": "3.5",
 	"majTextSize": "3",
 	"minTextSize": "2"
 };
