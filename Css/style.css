@@ -1,3 +1,7 @@
+*{
+	box-sizing: border-box;
+}
+
 body{
 	margin: 0;
 	display: flex;
@@ -25,7 +29,7 @@ body{
 #menu-conatiner{
 	background: #104E45;
 	
-	flex: 1 0 500px;
+	flex: 1 0 680px;
 	height: 100vh;
 	
 	display: flex;
@@ -91,7 +95,11 @@ body{
 
 #cheat_sheet_container{
 	background: green;
-	flex: 0 0 150px;
+	height: 243px;
+}
+
+#cheat_sheet{
+	height: 100%;
 }
 
 .radio_container{

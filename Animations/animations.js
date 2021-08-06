@@ -5,13 +5,6 @@ function drawAndFade() {
 	for (let p of paths) {
 		record = Math.max(record, p.getTotalLength());
 	}
-	console.log(record);
-
-	/* for (let p of paths) {
-		p.style.strokeDasharray = record + 1;
-		p.style.strokeDashoffset = record + 1;
-		p.style.animation = "drawAndFade 2s linear forwards";
-	} */
 
 	let icon = document.getElementsByClassName("icon")[0];
 	icon.style.opacity = 0;
