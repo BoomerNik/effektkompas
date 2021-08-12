@@ -19,7 +19,8 @@ function createSVG(){
 	let ikon = document.querySelector("input[name=icon]:checked").value;
 	s += ikoner[ikon];
 	
-	s += createWatermark(43,55,15);
+
+	s += createWatermark();
 	
 	let title = titleInput.value;
 	let titleSize = titleTextSizeSlider.value;

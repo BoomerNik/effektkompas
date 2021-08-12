@@ -9,6 +9,8 @@ const colors = {
 const defaultStyling = {r: 10, v: false, t: 2};
 let styling = {};
 
+let totalRadius = 0;
+
 class Segment{
 	constructor(t){
 		t = t.split("#");
@@ -53,6 +55,7 @@ class Segment{
 			verticalText = style.v;
 			
 			let r2 = r1 + style.r;
+			totalRadius = Math.max(totalRadius, r2);
 			
 			s += this.layers[i].draw(r1, r2, a1, a2);
 			
@@ -108,6 +111,7 @@ class Layer{
 
 function drawModel(R, angleOffset, segments){
 	let s = "";
+	totalRadius = 0;
 	
 	let ai = TWO_PI / segments.length;
 	
