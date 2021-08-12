@@ -1,4 +1,4 @@
-let offset = 0.5;
+let offset = 0.2;
 
 let strokeColor = 'black';
 let fillColor = 'None';

@@ -6,7 +6,7 @@ function setup(){
 	loadCookie();
 	updateViewBox();
 	updateSVG();
-	drawAndFade();
+	//drawAndFade();
 }
 
 function createSVG(){
