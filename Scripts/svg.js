@@ -68,7 +68,11 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 		let am = (a2+a1) / 2;
 		let ai = textSize / r1;
 		let n = t.length;
-		
+
+		console.log(am);
+		if(PI/2 < am && am < PI*3/2)
+			ai *= -1;
+
 		for(let i = 0; i < n; i++){
 			let a = am - (n-1)/2 * ai + ai*i;
 			
@@ -78,7 +82,7 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 			let id = "defpath"+(count.defPath++);
 			pathids.push(id);
 			
-			if(v1.x > v2.x)
+			if(ai < 0)
 				[v1,v2] = [v2,v1];
 			
 			s += `<path id="${id}" d="M ${v1.x} ${v1.y} L ${v2.x} ${v2.y}" />\n`;
