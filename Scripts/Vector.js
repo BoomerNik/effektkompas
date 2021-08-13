@@ -32,6 +32,14 @@ class Vector{
 const PI = 3.1416;
 const TWO_PI = 6.283185307;
 
+function toRadians(v){
+	return v / 180 * PI;
+}
+
+function toDegrees(v){
+	return v / PI * 180;
+}
+
 function constrain(v, min, max){
 	let val = Math.min(v, max);
 	val = Math.max(val, min);

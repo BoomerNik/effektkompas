@@ -109,6 +109,22 @@ class Layer{
 	}
 }
 
+class Bubble{
+	constructor(pv, pr, r, t, c){
+		this.pv = pv;
+		this.pr = pr;
+		this.r = r;
+		this.t = t;
+		this.c = c;
+	}
+
+	draw(rotationOffset){
+		fillColor = this.c;
+		let v = Vector.fromAngle(this.pv+rotationOffset, this.pr);
+		return createTextBubble(v.x, v.y, this.r, this.t);
+	}
+}
+
 function drawModel(R, angleOffset, segments){
 	let s = "";
 	totalRadius = 0;

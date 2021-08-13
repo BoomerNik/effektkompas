@@ -69,7 +69,6 @@ function drawTextInArcSegment(t, r1, r2, a1, a2){
 		let ai = textSize / r1;
 		let n = t.length;
 
-		console.log(am);
 		if(PI/2 < am && am < PI*3/2)
 			ai *= -1;
 
@@ -150,6 +149,25 @@ function drawTextInArcSegmentPoint(t, r1, r2, a1, a2){
 		a += 180;
 	
 	return createText(t, c.x, c.y, a.toFixed(2));
+}
+
+function createTextBubble(x, y, r, t){
+	let s = "";
+	s += `<circle cx="${x}" cy="${y}" r="${r}" fill="${fillColor}" />\n`;
+	s += `<circle cx="${x}" cy="${y}" r="${r+1}" fill="none" stroke="black" stroke-width="0.2" stroke-dasharray="1 1"/>\n`
+
+	lines = t.split("\\\\");
+	for (let i = 0; i < lines.length; i++) {
+		const l = lines[i];
+
+		let ty = y - (lines.length-1)/2 * textSize + textSize * i;
+
+		s += createText(l, x, ty);
+	}
+		
+
+
+	return s;
 }
 
 function createCircle(x, y, r){
